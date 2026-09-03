@@ -1,0 +1,43 @@
+.Navbar{
+    background-color:rgb(17, 55, 87);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding: 1rem 3rem;   
+    color:white;
+}
+.title{
+    font-size:24px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+.title a{
+    color:white;
+    text-decoration:none;
+}
+.links{
+    list-style:none;
+    display:flex;
+    gap:2rem;
+
+}
+.links a{
+    text-decoration:none;
+    color:white;
+}
+.links a:hover{
+   color:rgb(133, 192, 243);
+}
+.logbutton{
+    border:none;
+    background-color:rgb(92, 173, 243);
+    padding:10px 20px;
+    border-radius:6px;
+    cursor:pointer;
+    color:white;
+}
+.logbutton:hover{
+    color:rgb(163, 207, 245);
+}
+
+

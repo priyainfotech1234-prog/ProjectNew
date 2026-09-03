@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Leave Management System</title>
+        <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    </head>
+    <body>
+        <div class="entire-box">
+        <div class="box">
+        <h2>Login</h2>
+        <form method="POST">
+            {% csrf_token%}
+            <div class="input-group">
+                <label>UserName:</label>
+                <input type="text" name="username" required>
+            </div>
+            <div class="input-group">
+                <label>Password:</label>
+                <input type="password" name="password" required>
+            </div>
+                <button type="submit" class="primary">Login</button>
+                <a href="{% url 'signup' %}"><button type="button" class="secondary">Signup</button></a>
+        </form>
+        </div>
+        </div>
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+    </body>
+</html>

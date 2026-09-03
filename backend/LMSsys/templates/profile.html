@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    </head>
+    <body>
+        <form method="POST">
+            {% csrf_token%}
+            <fieldset>
+                <legend>Profile settings:</legend>
+                <table>
+                <tr>
+                    <td><label>Name:</label></td>
+                    <td><input type="text" name="name" value="{{user.name}}"></td>
+                </tr>
+                <tr>
+                    <td><label>Email:</label></td>
+                    <td><input type="email" name="email" value="{{user.email}}"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit">Update</button>
+                    </td>
+                </tr>
+            </table>
+            </fieldset>
+        </form>
+          {% if message%}
+        <p style="color:green;">{{message}}</p>
+        {%endif%}
+        <a href="{%url 'dashboard'%}">Go to dashboard</a>
+    </body>
+</html>

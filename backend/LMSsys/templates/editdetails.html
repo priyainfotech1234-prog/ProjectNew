@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    </head>
+    <body>
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                {% for name,email,role_id in user %}
+                <tr>
+                    <td><label>Name:</label></td>
+                    <td><input type="text" name="name" value="{{name}}"></td>
+                </tr>
+                <tr>
+                    <td><label>Email:</label></td>
+                    <td><input type="email" name="email" value="{{email}}"></td>
+                </tr>
+                <tr>
+                    <td><label>RoleID:</label></td>
+                    <td><input type="number" name="role_id" value="{{role_id}}"></td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Save</button></td>
+                </tr>
+                <tr>
+                <select>
+                    {% for id,role_name in role %}
+                    <option>{{id}}{{role_name}}</option>
+                    {% endfor %}
+                </select>
+                {%endfor%}
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

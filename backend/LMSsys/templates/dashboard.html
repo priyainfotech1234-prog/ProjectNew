@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    </head>
+    <body>
+            {%csrf_token%}
+            <p> Welcome Dashboard!!</p>
+            <a href="{% url 'edit' %}">Profile Settings</a>
+            <a href="{% url 'userdetails'%}">View Profile Details</a>
+            <a href="{% url 'applyleave' %}">Apply Leave</a>
+    </body>
+</html>

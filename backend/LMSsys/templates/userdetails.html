@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0"> 
+        <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    </head>
+    <body>
+        <form action="{% url 'logout' %}" method="POST">
+            {%csrf_token%}
+            <div style="text-align:right;">
+                <p>Welcome {{request.session.name}}</p>
+                <button type="submit">Logout</button>
+            </div>
+            <hr>
+            <h1>User Management View</h1>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                {% if request.session.role_id == 1 %}
+                <th>Action</th>
+                {% endif %}
+            </tr>
+            {% for id,name,email,role in user%}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{email}}</td>
+                <td>{{role}}</td>
+                {% if request.session.role_id == 1 %}
+                <td><a href="{% url 'editdetails' id %}">Edit</a>||
+                    <a href="{% url 'delete' id %}">Delete</a></td>
+                    {% endif %}
+            </tr>
+                {%endfor%}
+        </table>
+        </form>
+          <hr>
+        <h1>Leave Management View</h1>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Leave_Type</th>
+                <th>Start_Date</th>
+                <th>End_Date</th>
+                <th>Reason</th>
+                {% if request.session.role_id == 1 %}
+                <th>Action</th>
+                {% endif %}
+                <th>Status</th>
+            </tr>
+            {% for name,email,leave_type,start_date,end_date,reason,id,status in applyleave %}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{email}}</td>
+                <td>{{leave_type}}</td>
+                <td>{{start_date}}</td>
+                <td>{{end_date}}</td>
+                <td>{{reason}}</td>
+                {% if request.session.role_id == 1 %}
+                <td>
+                <form method="POST" action="{% url 'status' id %}">
+                    {% csrf_token %}
+                    <button type="submit" name="action" value="Approved">Approve</button>
+                    <button type="submit" name="action" value="Reject">Reject</button>
+                </form>
+                </td>
+                {% endif %}
+                <td>{{status}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

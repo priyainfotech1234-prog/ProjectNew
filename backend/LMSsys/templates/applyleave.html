@@ -1,0 +1,43 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    </head>
+    <body>
+        <div class="entire-box">
+        <div class="box">
+        <form method="POST">
+            {% csrf_token %}
+            <h2>Leave Application Form</h2>
+            <div class="input-group">
+                <label>Leave_Type:</label>
+                <select name="leave_type">
+                    <option>Sick Leave</option>
+                    <option>Casual Leave</option>
+                    <option>Earned Leave</option>
+                </select>
+            </div>
+            <div class="input-group">
+                   <label>Start Date:</label>
+                   <input type="date" name="start_date">
+            </div>
+            <div class="input-group">
+                <label>End Date:</label>
+                <input type="date" name="end_date">
+            </div> 
+            <div class="input-group">
+                    <label>Reason:</label>
+                    <input type="text" name="text">
+            </div>
+            <button type="submit" class="primary">Apply Leave</button>
+        </form>
+        </div>
+        </div>
+        {% if message %}
+        <p style="color:green">{{message}}</p>
+        {% endif %}
+    </body>
+</html>
