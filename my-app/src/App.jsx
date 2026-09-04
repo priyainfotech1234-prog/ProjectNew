@@ -9,8 +9,9 @@ import Contact from './Contact';
 import LeaveDashboard from './LeaveDashboard';
 import Data from './Data';
 import Data1 from './Data1';
-import Trial from './Trial';
-import Reduc from './Reduc';
+import SimpleTracker from './Trial';
+import Reducer from './Reducer';
+import MasterComponent from './State';
 
 
 function App(){
@@ -38,8 +39,9 @@ function App(){
       {isLoggedIn && <LeaveDashboard/>}
       {isLoggedIn && <Data userList={users}/>}
       {isLoggedIn && <Data1 userList={users}/>}
-      <Trial/>
-      <Reduc/>
+      <SimpleTracker/>
+      <Reducer/>
+      <MasterComponent/>
       <Routes>
         <Route path="/" element={<Hero isLoggedIn={isLoggedIn} user={currentUser} balances={currentUser.leaveBalances} />} />
         <Route path="/about" element={<About/>} />
