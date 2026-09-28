@@ -39,9 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'LMSsys',
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -122,3 +125,5 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIR=[os.path.join(BASE_DIR,'static')]
+
+CORS_ALLOW_ALL_ORIGINS=True

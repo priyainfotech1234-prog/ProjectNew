@@ -1,0 +1,11 @@
+.footer-container {
+  background-color: #0f172a; 
+  color: #94a3b8; 
+  text-align:center;
+  left:0;
+  bottom:0;
+  position:fixed;
+  width:100%;
+
+}
+

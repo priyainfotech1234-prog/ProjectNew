@@ -12,6 +12,7 @@ import Data1 from './Data1';
 import SimpleTracker from './Trial';
 import Reducer from './Reducer';
 import MasterComponent from './State';
+import Footer from './Footer';
 
 
 function App(){
@@ -39,14 +40,15 @@ function App(){
       {isLoggedIn && <LeaveDashboard/>}
       {isLoggedIn && <Data userList={users}/>}
       {isLoggedIn && <Data1 userList={users}/>}
-      <SimpleTracker/>
-      <Reducer/>
-      <MasterComponent/>
+      {isLoggedIn && <SimpleTracker/>}
+      {isLoggedIn && <Reducer/>}
+      {isLoggedIn && <MasterComponent/>}
       <Routes>
         <Route path="/" element={<Hero isLoggedIn={isLoggedIn} user={currentUser} balances={currentUser.leaveBalances} />} />
         <Route path="/about" element={<About/>} />
         <Route path="/contact" element={<Contact/>} />
       </Routes>
+      <Footer/>
     </Router>
     </>
   );
