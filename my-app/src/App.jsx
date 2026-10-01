@@ -13,12 +13,21 @@ import SimpleTracker from './Trial';
 import Reducer from './Reducer';
 import MasterComponent from './State';
 import Footer from './Footer';
+import Login from './Login';
 
 
 function App(){
-  const [isLoggedIn,setIsLoggedIn]=useState(true);
+  {/* const [isLoggedIn,setIsLoggedIn]=useState(True)*/}
+  const [isLoggedIn,setIsLoggedIn]=useState(!!localStorage.getItem('userid'));
 
-  const currentUser={
+  const[currentUser,setCurrentUser]= useState({
+    name:localStorage.getItem('name')||"Guest",
+    role_id:localStorage.getItem('role_id')|| null,
+    userid:localStorage.getItem('userid')||null,
+    leaveBalances: { annual: 12, sick: 5, casual: 3 }
+  });
+
+  {/*const currentUser={
     name:"Priya",
     role:"Employee",
     leaveBalances:{
@@ -26,7 +35,7 @@ function App(){
       sick:5,
       casual:3
     }
-  };
+  };*/}
 
   const users=[
     {id:1,username:"Priya",email:"priya@gmail.com"},
@@ -45,8 +54,10 @@ function App(){
       {isLoggedIn && <MasterComponent/>}
       <Routes>
         <Route path="/" element={<Hero isLoggedIn={isLoggedIn} user={currentUser} balances={currentUser.leaveBalances} />} />
+        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} />} />
         <Route path="/about" element={<About/>} />
         <Route path="/contact" element={<Contact/>} />
+        <Route path="/dashboard" element={<LeaveDashboard />} />
       </Routes>
       <Footer/>
     </Router>

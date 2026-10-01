@@ -1,0 +1,35 @@
+body{
+  background-color:rgb(182, 172, 31);
+  margin:0;
+  padding:0;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.navbar{
+  background-color:rgb(56, 55, 2);
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  color:white;
+}
+.title{
+  font-size:24px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+.links{
+  list-style:none;
+  display:flex;
+  gap:2rem;
+}
+.foot{
+  background-color: #645c16; 
+  color: white; 
+  text-align:center;
+  left:0;
+  bottom:0;
+  position:fixed;
+  width:100%;
+}
+.Main{
+  max-width:600px;
+}
