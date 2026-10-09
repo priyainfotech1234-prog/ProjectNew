@@ -14,6 +14,7 @@ import Reducer from './Reducer';
 import MasterComponent from './State';
 import Footer from './Footer';
 import Login from './Login';
+import Try from './Try';
 
 
 function App(){
@@ -52,6 +53,7 @@ function App(){
       {isLoggedIn && <SimpleTracker/>}
       {isLoggedIn && <Reducer/>}
       {isLoggedIn && <MasterComponent/>}
+      <Try/>
       <Routes>
         <Route path="/" element={<Hero isLoggedIn={isLoggedIn} user={currentUser} balances={currentUser.leaveBalances} />} />
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} />} />

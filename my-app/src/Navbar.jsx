@@ -20,7 +20,7 @@ function Navbar(props){
                 <button className="logbutton" onClick={()=> props.setIsLoggedIn(false)}>Logout</button>
             </div>
         ):(
-            <button className="logbutton" onClick={()=> props.setIsLoggedIn(true)}>Login</button>
+            <Link to="/login" className="logbutton">Login</Link>
         )}
         </div>
         </>
