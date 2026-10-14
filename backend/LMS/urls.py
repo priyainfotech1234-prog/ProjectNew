@@ -31,4 +31,5 @@ urlpatterns = [
     #path('applyleave/',views.applyleave,name="applyleave"),
     #path('status/<int:id>/',views.status,name="status"),
     path('api/login/',views.api_login,name="api_login"),
+    path('api/signup/',views.signup,name="signup"),
 ]

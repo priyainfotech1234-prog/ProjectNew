@@ -48,8 +48,8 @@ function Login({ setIsLoggedIn, setCurrentUser }) {
     };
 
     return (
-        <div style={{ maxWidth: "400px", margin: "50px auto", textAlign: "left" }}>
-            <h2>Login to Leave Management System</h2>
+        <div style={{ maxWidth: "400px", margin: "50px auto", textAlign: "Left" }}>
+            <h2>LOGIN</h2>
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             
             <form onSubmit={handleLogin}>

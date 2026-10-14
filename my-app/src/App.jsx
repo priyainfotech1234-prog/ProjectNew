@@ -15,6 +15,7 @@ import MasterComponent from './State';
 import Footer from './Footer';
 import Login from './Login';
 import Try from './Try';
+import Signup from './Signup';
 
 
 function App(){
@@ -53,13 +54,14 @@ function App(){
       {isLoggedIn && <SimpleTracker/>}
       {isLoggedIn && <Reducer/>}
       {isLoggedIn && <MasterComponent/>}
-      <Try/>
+      {isLoggedIn && <Try/>}
       <Routes>
         <Route path="/" element={<Hero isLoggedIn={isLoggedIn} user={currentUser} balances={currentUser.leaveBalances} />} />
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} />} />
         <Route path="/about" element={<About/>} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/dashboard" element={<LeaveDashboard />} />
+        <Route path="/signup" element={<Signup/>}/>
       </Routes>
       <Footer/>
     </Router>

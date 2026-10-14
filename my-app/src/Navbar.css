@@ -5,6 +5,9 @@
     align-items:center;
     padding: 1rem 3rem;   
     color:white;
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 .title{
     font-size:24px;
@@ -35,6 +38,7 @@
     border-radius:6px;
     cursor:pointer;
     color:white;
+    text-decoration:none;
 }
 .logbutton:hover{
     color:rgb(163, 207, 245);

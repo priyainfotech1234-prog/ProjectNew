@@ -1,5 +1,6 @@
 import React from 'react';
 import './Hero.css';
+import {Link} from "react-router-dom";
 
 function Hero({isLoggedIn,user,balances}){
     if(!isLoggedIn){
@@ -10,8 +11,8 @@ function Hero({isLoggedIn,user,balances}){
                 <h1>Welcome to LMS Portal</h1>
                 <p>Your all-in-one space to plan your time off, track balances, and manage team attendance.</p>
                 <div className="hero-buttons">
-                    <button className="btn-primary">Login</button>
-                    <button className="btn-secondary">SignUp</button>
+                    <Link to="/login" className="btn-primary">Login</Link>
+                    <Link to="/signup" className="btn-secondary">SignUp</Link>
                 </div>
             </div>
             <div className="hero-image">
