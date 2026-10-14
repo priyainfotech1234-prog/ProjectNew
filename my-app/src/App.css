@@ -12,3 +12,6 @@ body{
     background-color:#f8fafc;
     line-height:1.5;
 }
+input, select, button,label {
+  font-family: inherit;
+}

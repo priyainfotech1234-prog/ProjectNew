@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Login.css';
 import axios from 'axios';
 
 // Accept props passed down from App.jsx
@@ -48,37 +49,23 @@ function Login({ setIsLoggedIn, setCurrentUser }) {
     };
 
     return (
-        <div style={{ maxWidth: "400px", margin: "50px auto", textAlign: "Left" }}>
-            <h2>LOGIN</h2>
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+        <div className="entire-box">
+            <div className="box">
+                <h2>LOGIN</h2>
+                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             
-            <form onSubmit={handleLogin}>
-                <div style={{ marginBottom: "15px" }}>
-                    <label>Username:</label><br />
-                    <input 
-                        type="text" 
-                        value={username} 
-                        onChange={(e) => setUsername(e.target.value)} 
-                        required 
-                        style={{ width: "100%", padding: "8px" }}
-                    />
-                </div>
-                
-                <div style={{ marginBottom: "15px" }}>
-                    <label>Password:</label><br />
-                    <input 
-                        type="password" 
-                        value={password} 
-                        onChange={(e) => setPassword(e.target.value)} 
-                        required 
-                        style={{ width: "100%", padding: "8px" }}
-                    />
-                </div>
-                
-                <button type="submit" style={{ padding: "10px 20px", background: "blue", color: "white", border: "none" }}>
-                    Login
-                </button>
-            </form>
+                    <form onSubmit={handleLogin}>
+                        <div className="input-group">
+                            <label>Username:</label>
+                            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required/>
+                        </div>
+                        <div className="input-group">
+                            <label>Password:</label>
+                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+                        </div>
+                        <button type="submit" className="primary">Login</button>
+                    </form>
+            </div>
         </div>
     );
 }
