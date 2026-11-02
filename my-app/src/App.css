@@ -5,6 +5,12 @@
   padding:0;
   box-sizing:border-box;
 }
+html, body {
+  width: 100%;
+  /*overflow-x: hidden;*/ /* This is the key fix that prevents sideways scrolling on phones */
+  margin: 0;
+  padding: 0;
+}
 body{
     font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     font-size:14px;

@@ -11,20 +11,21 @@ def api_login(request):
         b=data.get("password")
 
         with connection.cursor() as cursor:
-            cursor.execute("select id,password,role_id,name from user where username=%s",[a])
+            cursor.execute("select id,password,role_id,name,email from user where username=%s",[a])
             result=cursor.fetchone()
-            request.session['userid']=result[0]
+            request.session['id']=result[0]
             request.session['role_id']=result[2]
             request.session['name']=result[3]
             try:
                 if result is not None:
                     pwd=result[1].decode('utf-8')
                     if pwd==b:
-                        return JsonResponse({'message':'Login Successful','role_id':result[2]},status=200)
+                        return JsonResponse({'message':'Login Successful','role_id':result[2],'name':result[3],'id':result[0],'email':result[4]},status=200)
                     else:
                         return JsonResponse({'error':'Wrong Password!! Please try again'},status=400)
-            except:
-                return JsonResponse({'error':'Invalid Credentials'},status=400) 
+            except Exception as e:
+                print("Login error",str(e))
+                return JsonResponse({'error':f'Invalid Credentials:{str(e)}'},status=400) 
             else:
                 return JsonResponse({'error':'First Signup'},status=404)   
     return JsonResponse({'error':'Invalid Method'},status=405)
@@ -43,3 +44,49 @@ def signup(request):
             cursor.execute("insert into user(username,password,name,email)values(%s,%s,%s,%s)",[u1,p1,n1,e1])
             return JsonResponse({'message':'Registered Successfully'})
     return JsonResponse({'error':'Invalid method'},status=405)
+
+@csrf_exempt
+def update(request):
+    print("----------------------------------------")
+    print("DEBUG: Update view was hit!")
+    print("DEBUG: All Session Data ->", dict(request.session))
+    user_id=request.session.get("id")
+    print(user_id)
+    if request.method=="PUT":
+        data=json.loads(request.body)
+        print("received",data)
+        na=data.get("name")
+        em=data.get("email")
+
+        with connection.cursor() as cursor:
+            cursor.execute("update user set name=%s,email=%s where id=%s",[na,em,user_id])
+            return JsonResponse({'message':'Updated Successfully'},status=200)
+    return JsonResponse({'message':'please use only PUT method'},status=400)
+
+@csrf_exempt
+def read(request,id=None):
+    logged_in_user=request.session['role_id']
+    print(logged_in_user)
+    if request.method=="GET":
+        with connection.cursor() as cursor:
+            if logged_in_user==1:
+                cursor.execute("select id,name,email,role_id from user")
+                result=cursor.fetchall()
+                return JsonResponse(result, safe=False)
+            else:
+                cursor.execute("select id,name,email,role_id from user where id=%s",[id])
+                result=cursor.fetchone()
+                return JsonResponse(result,safe=False)
+
+@csrf_exempt
+def delete(request,id):
+    if request.method=="DELETE":
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute("delete from user where id=%s",[id])
+                return JsonResponse({"message":"User deleted successfully"})
+        except Exception as e:
+            print("server error",e)
+            return JsonResponse({"error":str(e)},status=500)
+    return JsonResponse({"error":"Invalid Method"},status=400)
+        

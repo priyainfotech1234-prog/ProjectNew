@@ -1,0 +1,188 @@
+.dashboard-wrapper {
+  display: flex;
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport for mobile browsers */
+  width: 100vw;
+  overflow: hidden;
+  background-color: #f4f6f8;
+  /*font-family: system-ui, -apple-system, sans-serif;*/
+}
+
+/* Sidebar Layout */
+.sidebar {
+  width: 260px;
+  background-color: rgb(17, 55, 87);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  flex-shrink: 0; /* Prevents sidebar from shrinking */
+}
+
+.sidebar h3 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.list button {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: #cbd5e1;
+  padding: 6px 8px;/*0.75rem 1rem;*/
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.list button:hover {
+  background-color: #334155;
+  color: #ffffff;
+}
+
+/* Center Bar / Content Area */
+.center-bar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  overflow-y: auto;
+  min-width: 0; /* CRITICAL: Prevents flex children from blowing out container bounds */
+}
+
+.center-bar h2 {
+  font-size: 1.5rem;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.center-bar h3 {
+  font-size:12px;
+  color: #475569;
+}
+
+/* Edit Form Container */
+.center-bar form, 
+.center-bar > div > div {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  max-width: 500px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.center-bar input[type="text"],
+.center-bar select {
+  width: 100%;
+  padding: 10px;/*0.625rem;*/
+  /*margin-top:0.25rem;*/
+  margin-bottom: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+}
+.center-bar label{
+    color:black;
+}
+.center-bar >div > button {
+  background-color: rgb(92, 173, 243);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-right: 0.5rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  width: fit-content;
+}
+.center-bar > div > button:hover {
+  background-color: rgb(9, 53, 175);
+}
+/* Table Wrapper (Fixes mobile table breaking) */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto; /* Enables smooth horizontal scroll on narrow screens */
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin-top:1rem;
+  box-shadow: 0 1px 3px #00000005;
+}
+.style-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  white-space: nowrap;  /*Stops text squishing */
+}
+
+.style-table th, .style-table td {
+  padding:10px 10px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.style-table th {
+  background-color: #dfe0e2;
+  font-weight: 600;
+  color: #475569;
+}
+.style-table td{
+    background-color:#ffffff;
+}
+
+
+.cell {
+  display: flex;
+  gap:10px;
+  align-items: center;
+}
+
+/* Table Action Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.65rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn.del { background-color: #fee2e2; color: #991b1b; }
+.btn.edit { background-color: #fef3c7; color: #92400e; }
+.btn.view { background-color: #e0f2fe; color: #0369a1; }
+
+/* Responsive Media Query for Mobile Devices */
+@media (max-width: 768px) {
+  .dashboard-wrapper {
+    flex-direction: column;
+    height: auto;
+    min-height: 100dvh;
+    overflow-y: auto;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+  
+  .center-bar {
+    padding: 1rem;
+    overflow-y: visible;
+  }
+}

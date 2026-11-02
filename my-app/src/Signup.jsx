@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import './Signup.css';
+import {useNavigate} from 'react-router-dom';
 
 function Signup(){
     const[formData,setFormData]=useState({username:'',password:'',name:'',email:''});
+    const navigate=useNavigate();
 
     const handleChange=(e)=>{
         setFormData({...formData,[e.target.name]:e.target.value});
@@ -20,6 +22,8 @@ function Signup(){
 
             if (response.ok){
                 alert(data.message);
+                navigate('/login')
+                alert("Please login");
             }else{
                 alert(data.error||'Registration failed');
             }

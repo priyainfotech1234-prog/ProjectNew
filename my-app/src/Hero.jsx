@@ -23,8 +23,11 @@ function Hero({isLoggedIn,user,balances}){
         </div>
         </section>
         </>
-        )
+        );
     }
+}
+export default Hero;
+    {/*
     return(
         <section className="hero">
           <div className="hero-content"></div>
@@ -48,6 +51,6 @@ function Hero({isLoggedIn,user,balances}){
             <button className="btn-primary">Apply for Leave</button>
           </div>
           </section>
-    );
-}
-export default Hero;
+    )
+*/}
+    

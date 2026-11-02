@@ -1,47 +1,133 @@
-.Navbar{
-    background-color:rgb(17, 55, 87);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding: 1rem 3rem;   
-    color:white;
-    position:sticky;
-    top:0;
-    z-index:1000;
-}
-.title{
-    font-size:24px;
-    font-weight:bold;
-    letter-spacing:1px;
-}
-.title a{
-    color:white;
-    text-decoration:none;
-}
-.links{
-    list-style:none;
-    display:flex;
-    gap:2rem;
-
-}
-.links a{
-    text-decoration:none;
-    color:white;
-}
-.links a:hover{
-   color:rgb(133, 192, 243);
-}
-.logbutton{
-    border:none;
-    background-color:rgb(92, 173, 243);
-    padding:10px 20px;
-    border-radius:6px;
-    cursor:pointer;
-    color:white;
-    text-decoration:none;
-}
-.logbutton:hover{
-    color:rgb(163, 207, 245);
+.Navbar {
+    background-color: rgb(17, 55, 87);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    color: white;
+    position: sticky;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    top: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+    width: 100%;
 }
 
+.Navbar .title a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.Navbar .links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
 
+.Navbar .links li a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.Navbar .links li a:hover {
+    color: rgb(133, 192, 243);
+}
+
+.Navbar .right {
+    display: flex;
+    align-items: center;
+    
+}
+.Navbar .user-badge {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.Navbar .welcome-text {
+  font-size: 14px;
+  color: #e2e8f0;
+}
+
+.Navbar .logbutton {
+    background-color: rgb(92, 173, 243);
+    cursor: pointer;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    display: inline-block;
+}
+
+.Navbar .logbutton:hover {
+    background-color: rgb(70, 150, 220);
+}
+.Navbar .logbutton:active {
+  transform: scale(0.98);
+}
+/* Tablet & Smaller Screens */
+@media screen and (max-width: 768px) {
+  .Navbar {
+    padding: 1rem;
+    flex-wrap: wrap; /* Allows sections to wrap if space gets tight */
+    gap: 1rem;
+  }
+
+  .Navbar .links {
+    gap: 1.2rem;
+  }
+
+  .Navbar .title a {
+    font-size: 1.25rem;
+  }
+}
+
+/* Mobile Screens */
+@media screen and (max-width: 480px) {
+  .Navbar {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    gap: 0.75rem;
+  }
+
+  .Navbar .title {
+    margin-bottom: 0.25rem;
+  }
+
+  .Navbar .links {
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0.25rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .Navbar .right {
+    justify-content: center;
+  }
+
+  .Navbar .user-badge {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .Navbar .logbutton {
+    width: 100%;
+    text-align: center;
+  }
+}
