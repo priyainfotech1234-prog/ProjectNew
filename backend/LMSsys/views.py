@@ -46,7 +46,7 @@ def signup(request):
     return JsonResponse({'error':'Invalid method'},status=405)
 
 @csrf_exempt
-def update(request):
+def update(request,id):
     print("----------------------------------------")
     print("DEBUG: Update view was hit!")
     print("DEBUG: All Session Data ->", dict(request.session))
@@ -55,12 +55,16 @@ def update(request):
     if request.method=="PUT":
         data=json.loads(request.body)
         print("received",data)
+        id=data.get("id")
+        print(id)
         na=data.get("name")
         em=data.get("email")
+        ro=data.get("role_id")
+        #user_id=data.get("role_id")
 
         with connection.cursor() as cursor:
-            cursor.execute("update user set name=%s,email=%s where id=%s",[na,em,user_id])
-            return JsonResponse({'message':'Updated Successfully'},status=200)
+           cursor.execute("update user set name=%s, email=%s, role_id=%s where id=%s", [na, em, ro, id])
+           return JsonResponse({'message':'Updated Successfully'},status=200)
     return JsonResponse({'message':'please use only PUT method'},status=400)
 
 @csrf_exempt

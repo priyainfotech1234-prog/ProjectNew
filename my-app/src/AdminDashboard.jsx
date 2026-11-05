@@ -1,54 +1,89 @@
 import React,{useState} from 'react';
-import {getUser} from './auth';
 import axios from 'axios';
 import './dashboard.css';
+{/*import {getUser} from './auth';
+import {saveUserData} from './auth';*/}
 import {FaEye,FaEdit,FaTrash} from 'react-icons/fa';
 
 function AdminDashboard(){
-    const user=getUser();
-    const[showTable,setShowTable]=useState(false);
-    const[usersList,setUsersList]=useState([]);
-    const[activeTab,setActiveTab]=useState('profile');
-    const[showForm,setShowForm]=useState(false);
-    const[formData,setFormData]=useState({
-        name:user?user.name:'',
-        email:user?user.email:'',
-        role_id:user?user.role_id:'',
-    });
-    const handleEdit=()=>{
+    {/*const user=getUser();*/}
+    {/*console.log("user",user);*/}
+       const[showTable,setShowTable]=useState(false);
+       const[usersList,setUsersList]=useState([]);
+       const[showForm,setShowForm]=useState(false);
+       {/*const[currentUser,setCurrentUser]=useState({
+        id:usersList?usersList.id:'',
+        name:usersList?usersList.name:'',
+        email:usersList?usersList.email:'',
+        role_id:usersList?usersList.role_id:'',
+    }); */}
+    
+       const[formData,setFormData]=useState([]);
+    
+    const handleEdit=(data)=>{
+        console.log("clicked");
+        console.log("data",data);
         setShowForm(true);
+        setFormData({
+            id:data[0],
+            name:data[1],
+            email:data[2],
+            role_id:data[3],
+        });
+        
         setShowTable(false);
         
+        
+        
     };
-    const handleUserEdit=(alluser)=>{
+   {/* const handleUserEdit=(alluser)=>{
         setFormData({
             role_id:alluser[3],
         });
         setShowForm(true);
         setShowTable(false);
     }
+*/}
     const handleChange=(e)=>{
-        setFormData({
-            ...formData,
+        setFormData((prev)=>({
+            ...prev,
             [e.target.name]:e.target.value
-        });
+        }));
     };
-    const handleUpdate=async(e)=>{
+ /*const handleChange = (event) => {
+  const { name, value } = event.target;
+
+  // Convert to integer if it's the role_id field, otherwise keep as is
+  const updatedValue = name === 'role_id' ? parseInt(value, 10) : value;
+
+  setFormData((prevData) => ({
+    ...prevData,
+    [name]: updatedValue
+  }));
+};*/
+
+   const handleUpdate=async(e)=>{
         e.preventDefault();
+        console.log("clicked");
         try{
-            const response=await axios.put('http://localhost:8000/api/update/',formData,{
+            const response=await axios.put(`http://localhost:8000/api/update/${formData.id}/`,formData,{
                 withCredentials: true
             });
             alert("Updated Successfully");
+            handleView();
+            setShowTable(true);
             setShowForm(false);
+            
+            
         }catch(error){
             console.error("Full details",error);
         };
         
-    };
+    }
    
     const handleView=async(e)=>{
-        e.preventDefault();
+        if(e){
+            e.preventDefault();}
         try{
             const response=await axios.get('http://localhost:8000/api/read/',{
                 withCredentials:true
@@ -59,9 +94,9 @@ function AdminDashboard(){
             console.error("error",error);
         };
         setShowTable(true);
-        setShowForm(false);
+       setShowForm(false);
     };
-    const handleDelete=async(id)=>{
+    {/*const handleDelete=async(id)=>{
         try{
             const response=await axios.delete(`http://localhost:8000/api/delete/${id}/`,{
                 withCredentials:true
@@ -70,7 +105,7 @@ function AdminDashboard(){
         }catch(error){
             console.error("error",error);
         }
-    }
+    }*/}
     return(
         <>
         <div className="dashboard-wrapper">
@@ -78,12 +113,12 @@ function AdminDashboard(){
                 <h3>Menu</h3>
                 <ul className="list">
                     <li><button type="button" onClick={handleView}>Dashboard</button></li>
-                    <li><button>Apply Leave</button></li>
-                    <li><button type="submit" onClick={handleEdit}>Profile Settings</button></li>
+                    {/*<li><button>Apply Leave</button></li>
+                    <li><button type="submit" onClick={handleEdit}>Profile Settings</button></li>*/}
                 </ul>
             </div>
-            <div className="center-bar">
-                <h2>ADMIN DASHBOARD - Hi {user.name}!!</h2>
+           <div className="center-bar">
+                {/*<h2>ADMIN DASHBOARD - Hi {user.name}!!</h2>*/}
                 {showForm &&(
                     <div>
                         <label>Name:</label><br/>
@@ -106,6 +141,7 @@ function AdminDashboard(){
                     <table className="style-table">
                         <thead>
                             <tr>
+                            <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>RoleID</th>
@@ -113,18 +149,19 @@ function AdminDashboard(){
                             </tr>
                         </thead>
                         <tbody>
-                            {usersList.map((alluser)=>(
-                            <tr key={alluser[0]}>
-                            <td>{alluser[1]}</td>
-                            <td>{alluser[2]}</td>
-                            <td onClick={()=>handleEdit(alluser)}><FaEdit/>{alluser[3]}</td> 
-                            <td className="cell"><button className="btn del" type="button" onClick={()=>handleDelete(alluser[0])}><FaTrash/>Delete</button>
-                            </td>
+                            {usersList.map((data)=>(
+                            <tr key={data[0]}>
+                            <td>{data[0]}</td>
+                            <td>{data[1]}</td>
+                            <td>{data[2]}</td>
+                            <td onClick={()=>handleEdit(data)}><FaEdit/>{data[3]}</td> 
+                            {/*<td className="cell"><button className="btn del" type="button" onClick={()=>handleDelete(data[0])}><FaTrash/>Delete</button>
+                            </td>*/}
                             </tr>
                         ))}
                         </tbody>
                     </table>
-                     </div>
+                    </div>
                 )}
             </div>
         </div>
