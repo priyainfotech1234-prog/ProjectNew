@@ -18,7 +18,7 @@ function Login({ setIsLoggedIn, setCurrentUser }) {
         console.log("Login button was clicked");
 
         try {
-            const response = await axios.post('http://localhost:8000/api/login/', {
+            const response = await axios.post('https://projectnew-14ho.onrender.com/api/login/', {
                 username: username,
                 password: password
         }, {

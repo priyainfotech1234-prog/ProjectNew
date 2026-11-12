@@ -66,7 +66,7 @@ function AdminDashboard(){
         e.preventDefault();
         console.log("clicked");
         try{
-            const response=await axios.put(`http://localhost:8000/api/update/${formData.id}/`,formData,{
+            const response=await axios.put(`https://projectnew-14ho.onrender.com/api/update/${formData.id}/`,formData,{
                 withCredentials: true
             });
             alert("Updated Successfully");
@@ -85,7 +85,7 @@ function AdminDashboard(){
         if(e){
             e.preventDefault();}
         try{
-            const response=await axios.get('http://localhost:8000/api/read/',{
+            const response=await axios.get('https://projectnew-14ho.onrender.com/api/read/',{
                 withCredentials:true
             });
             console.log("User Details",response.data);
@@ -98,7 +98,7 @@ function AdminDashboard(){
     };
     {/*const handleDelete=async(id)=>{
         try{
-            const response=await axios.delete(`http://localhost:8000/api/delete/${id}/`,{
+            const response=await axios.delete(`https://projectnew-14ho.onrender.com/api/delete/${id}/`,{
                 withCredentials:true
             });
             setUsersList(usersList.filter((alluser)=>alluser[0]!==id));
