@@ -77,14 +77,29 @@ WSGI_APPLICATION = 'LMS.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+#DATABASES = {
+   # 'default': {
+        #'ENGINE': 'django.db.backends.mysql',
+        #'NAME': 'priya',
+        #'HOST':'localhost',
+        #'PORT':'3306',
+        #'PASSWORD':'mysql',
+        #'USER':'root',
+    #}
+#}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'priya',
-        'HOST':'localhost',
-        'PORT':'3306',
-        'PASSWORD':'mysql',
-        'USER':'root',
+        'NAME': 'test',
+        'USER': '25vNMiy89JNP34L.root',
+        'PASSWORD': 'zcw28IsivE61N48u',
+        'HOST': 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
+        'PORT': '4000',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'ssl_mode': 'REQUIRED',
+        },
     }
 }
 
