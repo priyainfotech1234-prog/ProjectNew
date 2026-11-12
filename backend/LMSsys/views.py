@@ -13,21 +13,24 @@ def api_login(request):
         with connection.cursor() as cursor:
             cursor.execute("select id,password,role_id,name,email from user where username=%s",[a])
             result=cursor.fetchone()
-            request.session['id']=result[0]
-            request.session['role_id']=result[2]
-            request.session['name']=result[3]
+            if result is None:
+                return JsonResponse({'error':'First signup or User not found'},status=404)
+            
             try:
-                if result is not None:
-                    pwd=result[1].decode('utf-8')
-                    if pwd==b:
-                        return JsonResponse({'message':'Login Successful','role_id':result[2],'name':result[3],'id':result[0],'email':result[4]},status=200)
-                    else:
-                        return JsonResponse({'error':'Wrong Password!! Please try again'},status=400)
+                pwd=result[1].decode('utf-8')
+                if pwd==b:
+                    request.session['id']=result[0]
+                    request.session['role_id']=result[2]
+                    request.session['name']=result[3]
+
+                    return JsonResponse({'message':'Login Successful','role_id':result[2],'name':result[3],'id':result[0],'email':result[4]},status=200)
+                    
+                else:
+                    return JsonResponse({'error':'Wrong Password!! Please try again'},status=400)
             except Exception as e:
                 print("Login error",str(e))
                 return JsonResponse({'error':f'Invalid Credentials:{str(e)}'},status=400) 
-            else:
-                return JsonResponse({'error':'First Signup'},status=404)   
+               
     return JsonResponse({'error':'Invalid Method'},status=405)
 
 
@@ -69,8 +72,10 @@ def update(request,id):
 
 @csrf_exempt
 def read(request,id=None):
-    logged_in_user=request.session['role_id']
+    logged_in_user=request.session.get('role_id')
     print(logged_in_user)
+    if not logged_in_user:
+        return JsonResponse({'error':'Unauthorized Please login again'},status=401)
     if request.method=="GET":
         with connection.cursor() as cursor:
             if logged_in_user==1:

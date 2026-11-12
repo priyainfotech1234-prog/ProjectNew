@@ -146,3 +146,7 @@ CORS_ALLOWED_ORIGINS=[
     "http://localhost:5176",
 ]
 CORS_ALLOW_CREDENTIALS = True
+
+# Required for cross-site cookies in modern browsers
+SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE = True  # Required because Render uses HTTPS

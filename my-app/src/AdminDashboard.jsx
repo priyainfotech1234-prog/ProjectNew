@@ -18,7 +18,12 @@ function AdminDashboard(){
         role_id:usersList?usersList.role_id:'',
     }); */}
     
-       const[formData,setFormData]=useState([]);
+       const[formData,setFormData]=useState({
+            id:'',
+            name:'',
+            email:'',
+            role_id:'',
+       });
     
     const handleEdit=(data)=>{
         console.log("clicked");
@@ -82,6 +87,7 @@ function AdminDashboard(){
     }
    
     const handleView=async(e)=>{
+        console.log("view button clicked");
         if(e){
             e.preventDefault();}
         try{
