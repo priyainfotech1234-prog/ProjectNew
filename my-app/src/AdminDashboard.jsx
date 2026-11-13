@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import axios from 'axios';
-import './dashboard.css';
+import './Dashboard.css';
 {/*import {getUser} from './auth';
 import {saveUserData} from './auth';*/}
 import {FaEye,FaEdit,FaTrash} from 'react-icons/fa';
