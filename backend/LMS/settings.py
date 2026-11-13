@@ -142,6 +142,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIR=[os.path.join(BASE_DIR,'static')]
 
 CORS_ALLOWED_ORIGINS=[
+     "https://project-new-orpin.vercel.app/",
     "http://localhost:5173",
     "http://localhost:5176",
 ]
